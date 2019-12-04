@@ -1,2 +1,2 @@
 # socket_opencv
-Transmit camera through TCP communication protocol
+Using OpenCV to transmit video data through TCP protocol
