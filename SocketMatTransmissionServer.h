@@ -15,7 +15,7 @@
  
 using namespace cv;
  
-#define PACKAGE_NUM 2
+#define PACKAGE_NUM 1
  
 #define IMG_WIDTH 640
 #define IMG_HEIGHT 480
@@ -24,31 +24,35 @@ using namespace cv;
  
 struct recvBuf
 {
+	char head[2];
 	char buf[BLOCKSIZE];
-	int flag;
+	//int flag;
 };
 
-struct sentbuf
+struct sentBuf
 {
+	char head[2];
 	char buf[BLOCKSIZE];
-	int flag;
+	//int flag;
 };
- 
+
 class SocketMatTransmissionServer
 {
 public:
 	SocketMatTransmissionServer(void);
 	~SocketMatTransmissionServer(void);
 	int sockConn;
+	int server_sockfd;
 private:
 	struct recvBuf data;
-	struct sentbuf data_s;
+	struct sentBuf data_s;
 	int needRecv;
 	int count;
  
 public:
 
-	int socketConnect(int PORT);
+	int socketInit(int PORT);
+	int socketConnect(void);
 	int transmit(cv::Mat image);	
 	int receive(cv::Mat& image);
 	void socketDisconnect(void);

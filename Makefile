@@ -4,4 +4,5 @@ server:
 client:
 	g++ `pkg-config opencv --cflags` SocketMatTransmissionClient.cpp Client.cpp -o client `pkg-config opencv --libs`
 clean:all
-	rm all
+	rm server 
+	rm client
